@@ -1,0 +1,17 @@
+{
+  "name": "warenliste",
+  "version": "1.0.0",
+  "description": "kleines Tool zur Dteneingabe",
+  "scripts": {
+    "start": "electron src/main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Arndt Tigges",
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "electron": "^25.3.1"
+  },
+  "dependencies": {
+    "sequelize": "^6.32.1"
+  }
+}
