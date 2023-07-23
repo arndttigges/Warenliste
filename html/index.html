@@ -25,12 +25,12 @@
               <div class="col-12">
                 <div class="p-3 border bg-light">
                     <div class="col-md-6">
-                        <label for="kundennr" class="form-label">KundenNr</label>
-                        <input type="text" class="form-control" id="kundennr">
+                        <label for="transaction_number" class="form-label">TransactionsNr</label>
+                        <input type="text" class="form-control" id="transaction_number">
                     </div>
                     <div class="col-md-6">
-                        <label for="datum" class="form-label">Datum</label>
-                        <input type="date" class="form-control" id="datum">
+                        <label for="date" class="form-label">Datum</label>
+                        <input type="date" class="form-control" id="date">
                     </div>
                 </div>
               </div>
@@ -38,31 +38,31 @@
                 <div class="p-3 border bg-light">
                     <form class="row g-3">
                         <div class="col-auto">
-                            <label for="artikelnr" class="form-label">ArtikelNr</label>
-                            <input type="text" class="form-control" id="artikelnr">
+                            <label for="articleNr" class="form-label">ArtikelNr</label>
+                            <input type="text" class="form-control" id="articleNr">
                         </div>
                         <div class="col-sm-5">
-                            <label for="beschreibung" class="form-label">Beschreibung</label>
-                            <input type="text" class="form-control" id="beschreibung">
+                            <label for="description" class="form-label">Beschreibung</label>
+                            <input type="text" class="form-control" id="description">
                         </div>
                         <div class="col-sm">
-                            <label for="listenpreis" class="form-label">Liste</label>
-                            <input type="text" class="form-control" id="listenpreis">
+                            <label for="quantity" class="form-label">Menge</label>
+                            <input type="text" class="form-control" id="quantity">
                         </div>
                         <div class="col-sm">
-                            <label for="mengeListe" class="form-label">Menge</label>
-                            <input type="text" class="form-control" id="mengeListe">
+                            <label for="unit" class="form-label">Einheit</label>
+                            <input type="text" class="form-control" id="unit">
                         </div>
                         <div class="col-sm">
-                            <label for="netto" class="form-label">Netto</label>
-                            <input type="text" class="form-control" id="netto">
+                            <label for="list_price" class="form-label">Listenpreis</label>
+                            <input type="text" class="form-control" id="list_price">
                         </div>
                         <div class="col-sm">
-                            <label for="mengeNetto" class="form-label">Menge</label>
-                            <input type="text" class="form-control" id="mengeNetto">
+                            <label for="netto_price" class="form-label">Netto</label>
+                            <input type="text" class="form-control" id="netto_price">
                         </div>
 
-                        <button type="button" class="btn btn-primary">Speichern</button>
+                        <button type="button" class="btn btn-primary" onclick="saveArticle()">Speichern</button>
                     </form>
                 </div>
               </div>
@@ -71,16 +71,17 @@
         </div>
     </div>
       
-  <table id="contact-table" class="table table-hover">
+  <table id="article-table" class="table table-hover">
     <thead>
       <tr>
-        <th onclick="sortTable(0)">KundenNr</th>
+        <th onclick="sortTable(0)">Vorgangsnummer</th>
         <th onclick="sortTable(1)">Datum</th>
         <th onclick="sortTable(2)">ArtikelNr</th>
-        <th onclick="sortTable(3)">Bezeichung</th>
-        <th onclick="sortTable(4)">Listenpreis</th>
-        <th onclick="sortTable(5)">NettoPreis</th>
-        <th onclick="sortTable(6)">Menge</th>
+        <th onclick="sortTable(3)">Beschreibung</th>
+        <th onclick="sortTable(4)">Liste</th>
+        <th onclick="sortTable(5)">Netto</th>
+        <th onclick="sortTable(6)">auf</th>
+        <th onclick="sortTable(7)">Gesparte %</th>
       </tr>
     </thead>
     <tbody></tbody>
@@ -89,43 +90,88 @@
   <script>
     function parseInput() {
         const inputField = document.getElementById('inputField');
-        const artikelnr = document.getElementById('artikelnr');
-        const beschreibung = document.getElementById('beschreibung');
-        const listenpreis = document.getElementById('listenpreis');
-        const mengeListe = document.getElementById('mengeListe');
-        const netto = document.getElementById('netto');
-        const mengeNetto = document.getElementById('mengeNetto');
-        // Add more output fields if needed
+        const articleNr = document.getElementById('articleNr');
+        const description = document.getElementById('description');
+        const quantity = document.getElementById('quantity');
+        const unit = document.getElementById('unit');
+        const list_price = document.getElementById('list_price');
+        const netto_price = document.getElementById('netto_price');
 
         const inputValue = inputField.value.trim();
         const splitValues = inputValue.split(' ');
 
-        // Set the values of other input fields
         if (splitValues.length >= 1) {
-            artikelnr.value = splitValues[0];
+            articleNr.value = splitValues[0];
         }
 
         if (splitValues.length >= 2) {
-            beschreibung.value = splitValues[1];
+            description.value = splitValues[1];
         }
 
         if (splitValues.length >= 3) {
-            listenpreis.value = splitValues[2];
+            description.value = splitValues[2];
         }
 
         if (splitValues.length >= 4) {
-            mengeListe.value = splitValues[3];
+            quantity.value = splitValues[3];
         }
 
         if (splitValues.length >= 5) {
-            netto.value = splitValues[4];
+            unit.value = splitValues[4];
         }
 
         if (splitValues.length >= 6) {
-            mengeNetto.value = splitValues[5];
+            list_price.value = splitValues[5];
         }
+
+        if (splitValues.length >= 7) {
+            netto_price.value = splitValues[6];
+        }
+        
         inputField.value = '';
     }
+
+    function saveArticle() {
+        const transaction_number = document.getElementById('transaction_number').value;
+        const date = document.getElementById('date').value;
+        const articleNr = document.getElementById('articleNr').value;
+        const description = document.getElementById('description').value;
+        const quantity = document.getElementById('quantity').value;
+        const unit = document.getElementById('unit').value;
+        const list_price = document.getElementById('list_price').value;
+        const netto_price = document.getElementById('netto_price').value;
+
+        window.api.send('saveArticle', {
+            transaction_number: transaction_number,
+            date: date,
+            articleNr: articleNr,
+            description: description,
+            quantity: quantity,
+            unit: unit,
+            list_price: list_price,
+            netto_price: netto_price,
+          });
+          console.log("save article")
+    }
+
+    window.api.receive('articles', (articles) => {
+      const table = document.getElementById('article-table');
+      const tbody = table.getElementsByTagName('tbody')[0];
+      tbody.innerHTML = '';
+
+      articles.forEach((article) => {
+        const row = tbody.insertRow();
+        row.id = article.dataValues.id
+        row.insertCell().textContent = article.dataValues.transaction_number;
+        row.insertCell().textContent = article.dataValues.date;
+        row.insertCell().textContent = article.dataValues.articleNr;
+        row.insertCell().textContent = article.dataValues.description;
+        row.insertCell().textContent = article.dataValues.list_price;
+        row.insertCell().textContent = article.dataValues.netto_price;
+        row.insertCell().textContent = article.dataValues.quantity + " " + article.dataValues.unit;
+        row.insertCell();
+      });
+    });
   </script>
 </body>
 </html>

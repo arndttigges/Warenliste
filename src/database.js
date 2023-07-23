@@ -1,30 +1,31 @@
-const {Sequelize} = require('sequelize');
+const { Sequelize, DataTypes } = require('sequelize');
+const path = require('path');
 
 class Database {
-  /**
-   * @param {{
-   *   username: string,
-   *   password: string,
-   *   database: string,
-   *   host: string,
-   *   port: number,
-   *   dialect: string,
-   * }} configuration
-   */
-  constructor(configuration) {
-    this.sequelize = new Sequelize(configuration.database, configuration.username, configuration.password, {
-      dialect: configuration.dialect,
-      host: configuration.host,
-      port: configuration.port,
+  constructor() {
+    const dbPath = path.join(__dirname, 'article.sqlite');
+    
+    this.sequelize =  new Sequelize({
+      dialect: 'sqlite',
+      storage: dbPath,
     });
-    // this.Contact = require('./models/contact.js')(this.sequelize);
+    
+    this.Article = require('./models/article.js')(this.sequelize);
   }
 
-  async saveEntry(data) {
+  async sync() {
+    try{
+      this.Article.sync();
+    } catch(error) {
+      console.log(error)
+    }
+  }
+
+  async saveArticle(data) {
     const contact = await this.Article.upsert(data);
   }
 
-  async fetchEntry(id) {
+  async fetchArticle(id) {
     return this.Article.findByPk(id);
   }
 

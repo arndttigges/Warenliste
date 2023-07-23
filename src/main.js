@@ -1,6 +1,8 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
+const path = require('path');
 const Database = require('./database.js');
 
+const database = new Database();
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -9,12 +11,27 @@ function createWindow() {
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,
+      preload: path.join(__dirname, 'preload.js'),
     },
   });
+  database.sync();
+  win.webContents.openDevTools()
 
-  win.webContents.on('did-finish-load', () => {
-    // load data from db
-  });
+ipcMain.on('saveArticle', async(event, obj) => {
+    try {
+      await database.saveArticle(obj)
+    } catch (error) {
+      console.error('Error saving heater:', error);
+    }
+})
+
+win.webContents.on('did-finish-load', async() => {
+    try{
+        loadArticles(win);
+    } catch (error) {
+        console.error('Error fetching articles:', error);
+    }
+});
 
   win.loadFile('../html/index.html');
 }
@@ -32,3 +49,12 @@ app.on('activate', () => {
     createWindow();
   }
 });
+
+async function loadArticles(window) {
+    try {
+    const data = await database.fetchArticles();
+    window.webContents.send('articles', data);
+    } catch (error) {
+    console.error('Error fetching contacts:', error);
+    }
+}
