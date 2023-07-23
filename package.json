@@ -10,10 +10,10 @@
   "author": "Arndt Tigges",
   "license": "GPL-3.0",
   "devDependencies": {
-    "electron": "^25.3.1"
+    "electron": "^25.3.1",
+    "electron-builder": "^24.4.0"
   },
   "dependencies": {
-    "electron-builder": "^24.4.0",
     "sequelize": "^6.32.1",
     "sqlite3": "^5.1.6"
   }
