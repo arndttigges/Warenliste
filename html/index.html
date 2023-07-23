@@ -97,37 +97,18 @@
         const list_price = document.getElementById('list_price');
         const netto_price = document.getElementById('netto_price');
 
-        const inputValue = inputField.value.trim();
-        const splitValues = inputValue.split(' ');
+        const regex = "(?<articleNr>[A-Z0-9]+)\\s*(?<description>[\\w\\süäö-]*)\\s*(Bestellt:\\s*(\\d*)\\s*([\\w\\süäö-]*))?\\s*(Geliefert:\\s*(\\d*)\\s*([\\w\\süäö-]*))?\\s*(\\d*\\s*\\w*\\s*=\\s*\\d*\\s*[\\w\\süäö-]*)\\s*\\D(?<list_price>\\d+,\\d{2}) [EUReur]*\\s*[PERper]*\\s*\\D(?<quantity>\\d*)\\s*(?<unit>[\\w\\süäö-]*)\\s*\\D(?<netto_price>\\d+,\\d{2})\\s*[EUReur]*\\s*[PERper]*"
+        const match = inputField.value.match(regex)
 
-        if (splitValues.length >= 1) {
-            articleNr.value = splitValues[0];
+        if (match) {
+            articleNr.value = match.groups.articleNr || '';
+            description.value = match.groups.description || '';
+            quantity.value = match.groups.quantity || '';
+            unit.value = match.groups.unit || '';
+            list_price.value = match.groups.list_price || '';
+            netto_price.value = match.groups.netto_price || '';
         }
 
-        if (splitValues.length >= 2) {
-            description.value = splitValues[1];
-        }
-
-        if (splitValues.length >= 3) {
-            description.value = splitValues[2];
-        }
-
-        if (splitValues.length >= 4) {
-            quantity.value = splitValues[3];
-        }
-
-        if (splitValues.length >= 5) {
-            unit.value = splitValues[4];
-        }
-
-        if (splitValues.length >= 6) {
-            list_price.value = splitValues[5];
-        }
-
-        if (splitValues.length >= 7) {
-            netto_price.value = splitValues[6];
-        }
-        
         inputField.value = '';
     }
 
