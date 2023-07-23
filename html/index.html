@@ -148,8 +148,8 @@
             description: description,
             quantity: quantity,
             unit: unit,
-            list_price: list_price,
-            netto_price: netto_price,
+            list_price: parseFloatFromString(list_price),
+            netto_price: parseFloatFromString(netto_price),
           });
           console.log("save article")
     }
@@ -163,7 +163,7 @@
         const row = tbody.insertRow();
         row.id = article.dataValues.id
         row.insertCell().textContent = article.dataValues.transaction_number;
-        row.insertCell().textContent = article.dataValues.date;
+        row.insertCell().textContent = formatDate(article.dataValues.date);
         row.insertCell().textContent = article.dataValues.articleNr;
         row.insertCell().textContent = article.dataValues.description;
         row.insertCell().textContent = article.dataValues.list_price;
@@ -172,6 +172,22 @@
         row.insertCell();
       });
     });
+
+    function formatDate(date) {
+        const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+        return new Date(date).toLocaleDateString(undefined, options);
+    }
+
+    function parseFloatFromString(inputString) {
+        const stringWithDotDecimal = inputString.replace(',', '.');
+        const floatValue = parseFloat(stringWithDotDecimal);
+
+        if (isNaN(floatValue)) {
+            throw new Error('Invalid input. Unable to convert to a valid float.');
+        }
+
+        return floatValue;
+    }
   </script>
 </body>
 </html>

@@ -32,7 +32,7 @@ class Database {
   async fetchArticles() {
     return this.Article.findAll(
         {
-            order: [['createdAt', 'ASC']]
+            order: [['createdAt', 'DESC']]
         }
     );
   }

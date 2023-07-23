@@ -20,6 +20,7 @@ function createWindow() {
 ipcMain.on('saveArticle', async(event, obj) => {
     try {
       await database.saveArticle(obj)
+      await loadArticles(win);
     } catch (error) {
       console.error('Error saving heater:', error);
     }
