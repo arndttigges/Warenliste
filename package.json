@@ -6,6 +6,7 @@
     "start": "electron src/main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "main": "src/main.js",
   "author": "Arndt Tigges",
   "license": "GPL-3.0",
   "devDependencies": {
