@@ -22,7 +22,16 @@ ipcMain.on('saveArticle', async(event, obj) => {
       await database.saveArticle(obj)
       await loadArticles(win);
     } catch (error) {
-      console.error('Error saving heater:', error);
+      console.error('Error saving article:', error);
+    }
+})
+
+ipcMain.on('deleteArticle', async(event, id) => {
+    try {
+      await database.deleteArticle(id)
+      await loadArticles(win);
+    } catch (error) {
+      console.error('Error deleting article:', error);
     }
 })
 

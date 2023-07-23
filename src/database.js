@@ -25,6 +25,10 @@ class Database {
     const contact = await this.Article.upsert(data);
   }
 
+  async deleteArticle(toDelete) {
+    this.Article.destroy({where: { id: toDelete }})
+  }
+
   async fetchArticle(id) {
     return this.Article.findByPk(id);
   }

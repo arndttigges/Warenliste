@@ -151,7 +151,6 @@
             list_price: parseFloatFromString(list_price),
             netto_price: parseFloatFromString(netto_price),
           });
-          console.log("save article")
     }
 
     window.api.receive('articles', (articles) => {
@@ -160,6 +159,7 @@
       tbody.innerHTML = '';
 
       articles.forEach((article) => {
+        console.log(article.dataValues)
         const row = tbody.insertRow();
         row.id = article.dataValues.id
         row.insertCell().textContent = article.dataValues.transaction_number;
@@ -170,6 +170,16 @@
         row.insertCell().textContent = article.dataValues.netto_price;
         row.insertCell().textContent = article.dataValues.quantity + " " + article.dataValues.unit;
         row.insertCell();
+        const buttonCell = row.insertCell();
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Löschen';
+        deleteButton.className = "btn btn-danger "
+        deleteButton.id="deleteArticle" + article.dataValues.id
+        
+        deleteButton.addEventListener('click', () => {
+            window.api.send('deleteArticle', article.dataValues.id);
+        });
+        buttonCell.appendChild(deleteButton);
       });
     });
 

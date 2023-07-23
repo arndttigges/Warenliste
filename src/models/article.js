@@ -8,8 +8,9 @@ class Article extends Model {
 module.exports = (sequelize) => {
     Article.init({
       id: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         primaryKey: true,
+        autoIncrement: true,
       },
       articleNr: DataTypes.STRING,
       description: DataTypes.STRING,
