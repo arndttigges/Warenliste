@@ -1,7 +1,7 @@
 {
   "name": "warenliste",
   "version": "1.0.0",
-  "description": "kleines Tool zur Dteneingabe",
+  "description": "kleines Tool zur Dateneingabe",
   "scripts": {
     "start": "electron src/main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,6 +12,7 @@
     "electron": "^25.3.1"
   },
   "dependencies": {
+    "electron-builder": "^24.4.0",
     "sequelize": "^6.32.1",
     "sqlite3": "^5.1.6"
   }
