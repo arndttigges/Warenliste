@@ -1,6 +1,6 @@
 {
   "name": "warenliste",
-  "version": "1.0.3",
+  "version": "v1.0.4",
   "description": "kleines Tool zur Dateneingabe",
   "scripts": {
     "start": "electron src/main.js",
