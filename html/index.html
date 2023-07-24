@@ -97,7 +97,7 @@
         const list_price = document.getElementById('list_price');
         const netto_price = document.getElementById('netto_price');
 
-        const regex = "(?<articleNr>[A-Z0-9]+)\\s*(?<description>[\\w\\süäö-]*)\\s*(Bestellt:\\s*(\\d*)\\s*([\\w\\süäö-]*))?\\s*(Geliefert:\\s*(\\d*)\\s*([\\w\\süäö-]*))?\\s*(\\d*\\s*\\w*\\s*=\\s*\\d*\\s*[\\w\\süäö-]*)\\s*\\D(?<list_price>\\d+,\\d{2}) [EUReur]*\\s*[PERper]*\\s*\\D(?<quantity>\\d*)\\s*(?<unit>[\\w\\süäö-]*)\\s*\\D(?<netto_price>\\d+,\\d{2})\\s*[EUReur]*\\s*[PERper]*"
+        const regex = "\\s*(?<articleNr>\\w{4,})\\s*(?<description>[^;]*)\\s*(Bestellt:?\\s*(\\d*)\\s*([\\w\\süäö-]*))\\s*(Geliefert:?\\s*(\\d*)\\s*([\\w\\süäö-]*))\\s*(\\d*\\s*\\w*\\s*=\\s*\\d*\\s*[\\w\\süäö-]*)\\s*\\D(?<list_price>\\d+,\\d{2}) [EUReur]*\\s*[PERper]*\\s*\\D(?<quantity>\\d*)\\s*(?<unit>[\\w\\süäö-]*)\\s*\\D(?<netto_price>\\d+,\\d{2})\\s*[EUReur]*\\s*[PERper]*"
         const match = inputField.value.match(regex)
 
         if (match) {

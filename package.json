@@ -1,6 +1,6 @@
 {
   "name": "warenliste",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "kleines Tool zur Dateneingabe",
   "scripts": {
     "start": "electron index.js",
