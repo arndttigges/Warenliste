@@ -1,6 +1,6 @@
 {
   "name": "warenliste",
-  "version": "1.0.5",
+  "version": "1.0.8",
   "description": "kleines Tool zur Dateneingabe",
   "scripts": {
     "start": "electron index.js",
@@ -13,6 +13,9 @@
     "appId": "arndttigges.warenliste",
     "mac": {
       "category": "utility"
+    },
+    "extraMetadata": {
+      "main": ".index.js"
     }
   },
   "author": "Arndt Tigges",
