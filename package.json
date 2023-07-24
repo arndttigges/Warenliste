@@ -1,6 +1,6 @@
 {
   "name": "warenliste",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "kleines Tool zur Dateneingabe",
   "scripts": {
     "start": "electron index.js",
@@ -15,7 +15,7 @@
       "category": "utility"
     },
     "extraMetadata": {
-      "main": ".index.js"
+      "main": "./index.js"
     }
   },
   "author": "Arndt Tigges",
