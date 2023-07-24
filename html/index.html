@@ -97,7 +97,7 @@
         const list_price = document.getElementById('list_price');
         const netto_price = document.getElementById('netto_price');
 
-        const regex = "\\s*(?<articleNr>\\w{4,})\\s*(?<description>[^;]*)\\s*(Bestellt:?\\s*(\\d*)\\s*([\\w\\süäö-]*))\\s*(Geliefert:?\\s*(\\d*)\\s*([\\w\\süäö-]*))\\s*(\\d*\\s*\\w*\\s*=\\s*\\d*\\s*[\\w\\süäö-]*)\\s*\\D(?<list_price>\\d+,\\d{2}) [EUReur]*\\s*[PERper]*\\s*\\D(?<quantity>\\d*)\\s*(?<unit>[\\w\\süäö-]*)\\s*\\D(?<netto_price>\\d+,\\d{2})\\s*[EUReur]*\\s*[PERper]*"
+        const regex = "\\s*(?<articleNr>\\w{4,})\\s*(?<description>[^;]*)\\s*(Bestellt:?\\s*(\\d*)\\s*([\\w\\süäö-]*))\\s*(Geliefert:?\\s*(\\d*)\\s*([\\w\\süäö-]*))\\s*(\\d*\\s*\\w*\\s*=\\s*\\d*\\s*[\\w\\süäö-]*)?\\s*\\D(?<list_price>\\d+,\\d{2}) [EUReur]*\\s*[PERper]*\\s*\\D(?<quantity>\\d*)\\s*(?<unit>[\\w\\süäö-]*)\\s*\\D(?<netto_price>\\d+,\\d{2})\\s*[EUReur]*\\s*[PERper]*"
         const match = inputField.value.match(regex)
 
         if (match) {
@@ -107,6 +107,17 @@
             unit.value = match.groups.unit || '';
             list_price.value = match.groups.list_price || '';
             netto_price.value = match.groups.netto_price || '';
+        } else {
+          const regex2 = "\\s*(?<articleNr>\\w{4,})\\s*(?<description>[^;]*)\\s*(Bestellt:?\\s*(\\d*)\\s*([\\w\\süäö-]*))\\s*(Geliefert:?\\s*(?<quantity>\\d*)\\s*(?<unit>[\\w\\süäö-]*))\\s*(\\d*\\s*\\w*\\s*\\d*\\s*[\\w\\süäö-]*)?\\s*\\D(?<list_price>\\d+,\\d{2})\\s*[EUReur]*"
+          const match2 = inputField.value.match(regex2)
+          if (match2) {
+            articleNr.value = match2.groups.articleNr || '';
+            description.value = match2.groups.description || '';
+            quantity.value = match2.groups.quantity || '';
+            unit.value = match2.groups.unit || '';
+            list_price.value = match2.groups.list_price || '';
+            netto_price.value = match2.groups.list_price || '';
+          }
         }
 
         inputField.value = '';
@@ -140,7 +151,6 @@
       tbody.innerHTML = '';
 
       articles.forEach((article) => {
-        console.log(article.dataValues)
         const row = tbody.insertRow();
         row.id = article.dataValues.id
         row.insertCell().textContent = article.dataValues.transaction_number;
@@ -150,7 +160,7 @@
         row.insertCell().textContent = article.dataValues.list_price;
         row.insertCell().textContent = article.dataValues.netto_price;
         row.insertCell().textContent = article.dataValues.quantity + " " + article.dataValues.unit;
-        row.insertCell();
+        row.insertCell().textContent = (1.0 - (article.dataValues.netto_price / article.dataValues.list_price)).toFixed(2);
         const buttonCell = row.insertCell();
         const deleteButton = document.createElement('button');
         deleteButton.textContent = 'Löschen';
