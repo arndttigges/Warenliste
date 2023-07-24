@@ -1,9 +1,12 @@
+
+const {app} = require('electron');
 const { Sequelize, DataTypes } = require('sequelize');
 const path = require('path');
 
 class Database {
   constructor() {
-    const dbPath = path.join(__dirname, 'article.sqlite');
+    console.log(app.getPath('userData'));   
+    const dbPath = path.join(app.getPath('userData'), 'article.sqlite');
     
     this.sequelize =  new Sequelize({
       dialect: 'sqlite',
