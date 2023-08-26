@@ -1,0 +1,8 @@
+{
+  "articleNr": "VWL756A",
+  "description": "Vaillant Heizungswärmepump­e VWL 75/­6 A\naroTHERM plus\n\n",
+  "quantity": "1",
+  "unit": "Stück",
+  "list_price": "8349,00",
+  "netto_price": "4387,29"
+}

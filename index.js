@@ -15,7 +15,7 @@ function createWindow() {
     },
   });
   database.sync();
-  win.webContents.openDevTools()
+  //win.webContents.openDevTools()
 
 ipcMain.on('saveArticle', async(event, obj) => {
     try {

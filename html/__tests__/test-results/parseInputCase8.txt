@@ -1,0 +1,8 @@
+{
+  "articleNr": "V376",
+  "description": "Ablauftrichter 1\" Vaillant Nr.376\n\n",
+  "quantity": "1",
+  "unit": "Stück\n",
+  "list_price": "51,00",
+  "netto_price": "51,00"
+}

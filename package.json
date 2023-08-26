@@ -1,10 +1,10 @@
 {
   "name": "warenliste",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "kleines Tool zur Dateneingabe",
   "scripts": {
     "start": "electron index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "app:dir": "electron-builder --dir",
     "app:dist": "electron-builder"
   },
@@ -21,11 +21,23 @@
   "author": "Arndt Tigges",
   "license": "GPL-3.0",
   "devDependencies": {
+    "@babel/preset-env": "^7.22.10",
+    "@babel/preset-react": "^7.22.5",
+    "@testing-library/dom": "^9.3.1",
+    "@testing-library/jest-dom": "^6.1.2",
+    "babel-jest": "^29.6.4",
     "electron": "^25.3.1",
-    "electron-builder": "^24.4.0"
+    "electron-builder": "^24.4.0",
+    "jest": "^29.6.4",
+    "jsdom": "^22.1.0"
   },
   "dependencies": {
     "sequelize": "^6.32.1",
     "sqlite3": "^5.1.6"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    }
   }
 }

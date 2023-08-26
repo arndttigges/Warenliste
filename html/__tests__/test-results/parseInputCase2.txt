@@ -1,0 +1,8 @@
+{
+  "articleNr": "ALPT262620",
+  "description": "T-Stück Alpex F50 Profi 26 x 26 x 20mm\nreduziert\n\n",
+  "quantity": "1",
+  "unit": "Stück",
+  "list_price": "16,90",
+  "netto_price": "8,45"
+}

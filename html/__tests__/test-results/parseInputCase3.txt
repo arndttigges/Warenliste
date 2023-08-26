@@ -1,0 +1,8 @@
+{
+  "articleNr": "CRRK17UNI",
+  "description": "COSMO Rohrkupplung m.Klemmverbindung­\nf. Rohr 17x2\n\n",
+  "quantity": "1",
+  "unit": "Stück",
+  "list_price": "18,80",
+  "netto_price": "7,52"
+}

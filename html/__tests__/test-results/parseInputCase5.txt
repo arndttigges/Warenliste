@@ -1,0 +1,8 @@
+{
+  "articleNr": "LESTSBC456T5",
+  "description": "Stichsägeblatt Lenox HCS Holz <102mm 5St\nKarbonblatt, 6ZPZ, T-Schaft,weiches Holz\n\n",
+  "quantity": "1",
+  "unit": "Packung",
+  "list_price": "12,00",
+  "netto_price": "9,00"
+}

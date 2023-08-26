@@ -1,0 +1,8 @@
+{
+  "articleNr": "EPHALB",
+  "description": "halbe Palette 80x60cm\n\n",
+  "quantity": "1",
+  "unit": "Stück",
+  "list_price": "15,00",
+  "netto_price": "15,00"
+}

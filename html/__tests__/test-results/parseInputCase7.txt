@@ -1,0 +1,8 @@
+{
+  "articleNr": "VWL755AS",
+  "description": "Vaillant Heizungswärmepum.­aroTHERM Split\nVWL 75/­5 AS Luft/­Wasser o.Hydraulikstat.\n\n",
+  "quantity": "",
+  "unit": "",
+  "list_price": "6397,00",
+  "netto_price": "6397,00"
+}

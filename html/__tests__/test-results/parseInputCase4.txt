@@ -1,0 +1,8 @@
+{
+  "articleNr": "VECOTPVC30CS",
+  "description": "VA ecoTEC plus VC 30CS/­1-5 E/­LL/­P\nBrennwert Gas-Wandheizgerät­\n\n",
+  "quantity": "1",
+  "unit": "Stück",
+  "list_price": "4451,00",
+  "netto_price": "4451,00"
+}
