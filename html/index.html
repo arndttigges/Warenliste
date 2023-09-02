@@ -145,8 +145,8 @@
         row.insertCell().textContent = formatDate(article.dataValues.date);
         row.insertCell().textContent = article.dataValues.articleNr;
         row.insertCell().textContent = article.dataValues.description;
-        row.insertCell().textContent = article.dataValues.list_price;
-        row.insertCell().textContent = article.dataValues.netto_price;
+        row.insertCell().textContent = article.dataValues.list_price.toFixed(2);
+        row.insertCell().textContent = article.dataValues.netto_price.toFixed(2);
         row.insertCell().textContent = article.dataValues.quantity + " " + article.dataValues.unit;
         row.insertCell().textContent = (1.0 - (article.dataValues.netto_price / article.dataValues.list_price)).toFixed(2);
         const buttonCell = row.insertCell();
