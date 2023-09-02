@@ -70,23 +70,24 @@
             </div>
         </div>
     </div>
-      
-  <table id="article-table" class="table table-hover">
-    <thead>
-      <tr>
-        <th onclick="sortTable(0)">RG-Nr.</th>
-        <th onclick="sortTable(1)">Datum</th>
-        <th onclick="sortTable(2)">ArtikelNr</th>
-        <th onclick="sortTable(3)">Beschreibung</th>
-        <th onclick="sortTable(4)">Liste</th>
-        <th onclick="sortTable(5)">Netto</th>
-        <th onclick="sortTable(6)">auf</th>
-        <th onclick="sortTable(7)">Gesparte %</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
-
+    <div class="table-responsive-md">
+      <table id="article-table" class="table table-sm table-hover">
+        <thead>
+          <tr>
+            <th onclick="sortTable(0)">RG-Nr.</th>
+            <th onclick="sortTable(1)">Datum</th>
+            <th onclick="sortTable(2)">ArtikelNr</th>
+            <th onclick="sortTable(3)">Beschreibung</th>
+            <th onclick="sortTable(4)">Liste</th>
+            <th onclick="sortTable(5)">Netto</th>
+            <th onclick="sortTable(6)">auf</th>
+            <th onclick="sortTable(7)">Gesparte %</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  
   <script src="inputParser.js"></script>
   <script>
     function parseInput() {
