@@ -177,6 +177,76 @@
 
         return floatValue;
     }
+function sortTable(columnIndex) {
+  var table, rows, switching, i, x, y, shouldSwitch, direction;
+  table = document.getElementById("article-table");
+  switching = true;
+  direction = "asc"; // Default sort direction
+
+  while (switching) {
+    switching = false;
+    rows = table.getElementsByTagName("tr");
+
+    for (i = 1; i < (rows.length - 1); i++) {
+      shouldSwitch = false;
+
+      x = rows[i].getElementsByTagName("td")[columnIndex];
+      y = rows[i + 1].getElementsByTagName("td")[columnIndex];
+
+      var xValue = x.innerHTML;
+      var yValue = y.innerHTML;
+
+      if (direction === "asc") {
+        if (isNaN(xValue)) {
+          if (xValue.toLowerCase() > yValue.toLowerCase()) {
+            shouldSwitch = true;
+            break;
+          }
+        } else {
+          if (Number(xValue) > Number(yValue)) {
+            shouldSwitch = true;
+            break;
+          }
+        }
+      } else {
+        if (isNaN(xValue)) {
+          if (xValue.toLowerCase() < yValue.toLowerCase()) {
+            shouldSwitch = true;
+            break;
+          }
+        } else {
+          if (Number(xValue) < Number(yValue)) {
+            shouldSwitch = true;
+            break;
+          }
+        }
+      }
+    }
+
+    if (shouldSwitch) {
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    } else {
+      // If no switch occurred, toggle the sort direction
+      if (direction === "asc") {
+        direction = "desc";
+      } else {
+        direction = "asc";
+      }
+    }
+  }
+
+  // Reset all header cells to remove sorting indicators
+  var headers = table.getElementsByTagName("th");
+  for (var j = 0; j < headers.length; j++) {
+    headers[j].classList.remove("asc", "desc");
+  }
+
+  // Add sorting indicator to the clicked header cell
+  var clickedHeader = headers[columnIndex];
+  clickedHeader.classList.add(direction);
+}
+
   </script>
 </body>
 </html>
